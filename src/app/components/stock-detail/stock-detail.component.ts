@@ -83,8 +83,11 @@ export class StockDetailComponent implements OnInit {
         } as Sentiment);
       }
     }
+    return this.ordenarDatos(data);
+  }
+
+  private ordenarDatos(data: Sentiment[]) {
     data.sort((a, b) => {
-      a.year <= b.year;
       if (a.year == b.year) {
         if (a.month <= b.month) {
           return -1;

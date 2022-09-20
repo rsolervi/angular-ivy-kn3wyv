@@ -43,8 +43,4 @@ export class StockComponent implements OnInit, OnChanges, OnDestroy {
       this.clickDeleteCard.emit(this.data?.symbol);
     }
   }
-
-  ngOnDestroy(): void {
-    console.log('stock destruido');
-  }
 }

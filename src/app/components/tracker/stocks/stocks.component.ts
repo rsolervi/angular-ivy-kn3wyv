@@ -59,15 +59,21 @@ export class StocksComponent implements OnInit, OnChanges {
     }
     if (obsSimbolos && obsSimbolos.length > 0) {
       this.loading = true;
-      forkJoin(obsSimbolos).subscribe((res) => {
-        res.forEach((e) => {
-          if (e !== null) {
-            this.data.push(e);
-          }
-        });
-        //this.data = this.data.concat(res);
-        this.loading = false;
-      });
+      forkJoin(obsSimbolos).subscribe(
+        (res) => {
+          res.forEach((e) => {
+            if (e !== null) {
+              this.data.push(e);
+            }
+          });
+        },
+        (err) => {
+          console.error(err);
+        },
+        () => {
+          this.loading = false;
+        }
+      );
     }
   }
 
@@ -89,8 +95,5 @@ export class StocksComponent implements OnInit, OnChanges {
     ) {
       this.getDataSymbols();
     }
-    // if(changes.newSymbols.currentValue.length > changes.newSymbols.previousValue.length){
-
-    // }
   }
 }

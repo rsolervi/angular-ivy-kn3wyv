@@ -26,7 +26,7 @@ export class StockDetailComponent implements OnInit {
     if (psymbol) {
       this.symbol = psymbol;
     }
-  } 
+  }
 
   ngOnInit(): void {
     const today = new Date();
@@ -42,13 +42,20 @@ export class StockDetailComponent implements OnInit {
         }
       })
     );
-    ob$.subscribe((res: Sentiment[] | null) => {
-      if (res) {
-        this.data = res;
-        this.data = this.completarDatos(this.data);
+    ob$.subscribe(
+      (res: Sentiment[] | null) => {
+        if (res) {
+          this.data = res;
+          this.data = this.completarDatos(this.data);
+        }
+      },
+      (err) => {
+        console.error(err);
+      },
+      () => {
+        this.loading = false;
       }
-      this.loading = false;
-    });
+    );
   }
   completarDatos(data: Sentiment[]) {
     const dates = [

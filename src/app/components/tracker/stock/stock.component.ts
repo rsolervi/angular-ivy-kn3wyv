@@ -17,7 +17,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
   templateUrl: './stock.component.html',
   styleUrls: ['./stock.component.scss'],
 })
-export class StockComponent implements OnInit, OnChanges, OnDestroy {
+export class StockComponent implements OnInit, OnChanges {
   @Input() data?: Stock;
   @Output() clickDeleteCard: EventEmitter<string> = new EventEmitter();
 
